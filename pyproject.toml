@@ -8,7 +8,43 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
+fastapi = {extras = ["all"], version = "^0.115.12"}
+alembic = "^1.16.1"
+sqlalchemy = {extras = ["asyncio", "mypy", "aiosqlite"], version = "^2.0.41"}
+python-jose = {extras = ["cryptography"], version = "^3.5.0"}
+passlib = {extras = ["bcrypt"], version = "^1.7.4"}
+ruff = "^0.11.13"
+reportlab = "^4.4.1"
 
+[tool.ruff]
+line-length = 90
+indent-width = 2
+target-version = 'py311'
+
+[tool.ruff.lint]
+select = ['E4', 'E7', 'E9', 'F', 'Q', 'I', 'C90', 'D', 'B', 'PL', 'SIM']
+ignore = ['D100', 'D104', 'D300']
+
+[tool.ruff.format]
+quote-style = 'single'
+
+[tool.ruff.flake8-quotes]
+docstring-quotes = 'single'
+inline-quotes = 'single'
+multiline-quotes = 'single'
+
+[tool.ruff.isort]
+lines-after-imports = 2
+known-local-folder = ['app']
+
+[tool.ruff.mccabe]
+max-complexity = 15
+
+[tool.ruff.pydocstyle]
+convention = 'google'
+
+[tool.ruff.pycodestyle]
+max-doc-length = 88
 
 [build-system]
 requires = ["poetry-core"]
