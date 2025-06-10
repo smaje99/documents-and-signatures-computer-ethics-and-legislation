@@ -1,0 +1,14 @@
+{
+  "python.analysis.autoFormatStrings": true,
+  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.autoImportCompletions": true,
+  "ruff.interpreter": [
+    "C:\\Users\\samaf\\AppData\\Local\\pypoetry\\Cache\\virtualenvs\\documents-and-signature-Q84irNPj-py3.11\\Scripts\\python.exe"
+  ],
+  "ruff.lint.args": [
+    "--config=./pyproject.toml"
+  ],
+  "ruff.format.args": [
+      "--config=./pyproject.toml"
+  ],
+}
