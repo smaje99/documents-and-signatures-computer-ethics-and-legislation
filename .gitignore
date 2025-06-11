@@ -1,0 +1,4 @@
+.vscode/cspell.json
+
+__pycache__/
+.ruff_cache/
