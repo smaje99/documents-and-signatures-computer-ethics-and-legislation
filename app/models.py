@@ -9,6 +9,9 @@ from sqlalchemy.sql.sqltypes import BigInteger, Boolean, LargeBinary, String, Te
 from app.database import Base
 
 
+__all__ = ('Consent', 'Contract', 'Signature', 'AuditLog',)
+
+
 uuid_pk = Annotated[
   str,
   mapped_column(
