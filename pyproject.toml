@@ -5,9 +5,10 @@ description = ""
 authors = ["Sergio Majé <smajefranco@gmail.com>"]
 license = "GPLv3"
 readme = "README.md"
+package-mode = false
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.12"
 fastapi = {extras = ["all"], version = "^0.115.12"}
 alembic = "^1.16.1"
 sqlalchemy = {extras = ["asyncio", "mypy", "aiosqlite"], version = "^2.0.41"}
