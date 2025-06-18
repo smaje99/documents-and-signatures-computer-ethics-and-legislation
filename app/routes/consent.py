@@ -1,6 +1,6 @@
 from typing import Annotated
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Body, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.database import session
@@ -18,12 +18,19 @@ DatabaseDependency = Annotated[AsyncSession, Depends(session)]
 
 
 @router.post('/')
-async def create_consent(consent: ConsentCreate, db: DatabaseDependency) -> ConsentOut:
+async def create_consent(
+  consent: Annotated[ConsentCreate, Body(alias='consentIn')],
+  *,
+  db: DatabaseDependency,
+) -> ConsentOut:
   '''Create a new consent.'''
   consent_in = Consent(**consent.model_dump())
   db.add(consent_in)
   await db.commit()
   await db.refresh(consent_in)
-  await log_action(db, 'Consent Created', str(consent_in))
 
-  return ConsentOut.model_validate(consent_in)
+  consent_out = ConsentOut.model_validate(consent_in)
+
+  await log_action(db, 'Consent Created', str(consent_out))
+
+  return consent_out
