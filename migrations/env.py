@@ -42,7 +42,7 @@ def get_url() -> str:
   if not all([host, port, database, user, password]):
     raise ValueError('Missing environment variables for database connection.')
 
-  url = Template(f'postgresql+psycopg2://${user}:${password}@${host}:${port}/${database}')
+  url = Template('postgresql+psycopg2://$user:$password@$host:$port/$database')
 
   return url.substitute(
     user=user,
