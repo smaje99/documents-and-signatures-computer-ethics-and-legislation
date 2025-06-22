@@ -1,9 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from app.api import api_router_v1
 from app.containers import ApplicationContainer
 from app.core.settings import Settings
-from app.routes import router
 
 
 __all__ = ('app',)
@@ -21,10 +21,10 @@ app = FastAPI(
 
 app.add_middleware(
   CORSMiddleware,
-  allow_origins=['*'],
+  allow_origins=[str(origin) for origin in container.config.domain.cors_origins()],
   allow_credentials=True,
   allow_methods=['*'],
   allow_headers=['*'],
 )
 
-app.include_router(router, prefix='/api', tags=['API'])
+app.include_router(api_router_v1, prefix=container.config.domain.api_version())
