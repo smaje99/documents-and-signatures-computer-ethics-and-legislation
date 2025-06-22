@@ -36,8 +36,8 @@ def get_url() -> str:
   host = os.getenv('POSTGRES__HOST', 'localhost')
   port = os.getenv('POSTGRES__PORT', '5432')
   database = os.getenv('POSTGRES__DATABASE', '')
-  user = os.getenv('POSTGRES__USER', '')
-  password = os.getenv('POSTGRES__PASSWORD', '')
+  user = os.getenv('POSTGRES__MIGRATION__UID', '')
+  password = os.getenv('POSTGRES__MIGRATION__PWD', '')
 
   if not all([host, port, database, user, password]):
     raise ValueError('Missing environment variables for database connection.')
