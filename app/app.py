@@ -1,16 +1,22 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from app.containers import ApplicationContainer
+from app.core.settings import Settings
 from app.routes import router
 
 
 __all__ = ('app',)
 
+settings = Settings()  # type: ignore[call-arg]
+container = ApplicationContainer()
+container.config.from_dict(settings.model_dump())
 
 app = FastAPI(
-  title='Microservicio Deontología Informática',
-  description='Prototipo para la actividad de refuerzo',
-  version='0.1.0'
+  title=container.config.project.name(),
+  description=container.config.project.description(),
+  version=container.config.project.version(),
+  openapi_url=f'{container.config.domain.api_version()}/openapi.json',
 )
 
 app.add_middleware(
