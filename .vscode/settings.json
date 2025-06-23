@@ -1,6 +1,6 @@
 {
   "python.analysis.autoFormatStrings": true,
-  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.typeCheckingMode": "standard",
   "python.analysis.autoImportCompletions": true,
   "ruff.interpreter": [
     "C:\\Users\\samaf\\AppData\\Local\\pypoetry\\Cache\\virtualenvs\\documents-and-signature-Q84irNPj-py3.11\\Scripts\\python.exe"
@@ -11,4 +11,7 @@
   "ruff.format.args": [
       "--config=./pyproject.toml"
   ],
+  "python-envs.defaultEnvManager": "ms-python.python:poetry",
+  "python-envs.defaultPackageManager": "ms-python.python:poetry",
+  "python-envs.pythonProjects": [],
 }
