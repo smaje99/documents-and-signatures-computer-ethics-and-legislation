@@ -30,3 +30,14 @@ class UserRepository(metaclass=ABCMeta):
     Returns:
         bool: True if user exists, False otherwise.
     '''
+
+  @abstractmethod
+  async def contains_email(self, email: str) -> bool:
+    '''Check if a user with the given email exists.
+
+    Args:
+        email (str): User email.
+
+    Returns:
+        bool: True if user with the given email exists, False otherwise.
+    '''

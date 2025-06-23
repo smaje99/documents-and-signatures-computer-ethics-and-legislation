@@ -23,3 +23,15 @@ class UserAlreadyExistsError(ResourceAlreadyExists):
         Self: UserAlreadyExists error.
     '''
     return cls(f'El usuario con el id {obj_id} ya existe')
+
+  @classmethod
+  def from_email(cls, email: str) -> Self:
+    '''User with email already exists error factory.
+
+    Args:
+        email (str): User email.
+
+    Returns:
+        Self: UserAlreadyExists error.
+    '''
+    return cls(f'El usuario con el email {email} ya existe')
