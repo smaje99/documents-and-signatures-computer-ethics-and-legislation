@@ -2,16 +2,10 @@
   "python.analysis.autoFormatStrings": true,
   "python.analysis.typeCheckingMode": "standard",
   "python.analysis.autoImportCompletions": true,
-  "ruff.interpreter": [
-    "C:\\Users\\samaf\\AppData\\Local\\pypoetry\\Cache\\virtualenvs\\documents-and-signature-Q84irNPj-py3.11\\Scripts\\python.exe"
-  ],
-  "ruff.lint.args": [
-    "--config=./pyproject.toml"
-  ],
-  "ruff.format.args": [
-      "--config=./pyproject.toml"
-  ],
   "python-envs.defaultEnvManager": "ms-python.python:venv",
   "python-envs.defaultPackageManager": "ms-python.python:pip",
   "python-envs.pythonProjects": [],
+  "python.analysis.diagnosticSeverityOverrides": {
+    "reportGeneralTypeIssues": "none"
+  },
 }
