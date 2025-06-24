@@ -1,4 +1,11 @@
-from pydantic import AnyHttpUrl, PostgresDsn, SecretStr, ValidationInfo, field_validator
+from pydantic import (
+  AnyHttpUrl,
+  Field,
+  PostgresDsn,
+  SecretStr,
+  ValidationInfo,
+  field_validator,
+)
 from pydantic_core import MultiHostUrl
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -17,7 +24,9 @@ class PostgresSettings(BaseSettings):
 
   echo: bool
 
-  uri: PostgresDsn
+  uri: PostgresDsn | None = None
+
+  model_config = SettingsConfigDict(extra='ignore', frozen=True)
 
   @field_validator('uri', mode='before')
   @classmethod
@@ -60,21 +69,15 @@ class DomainSettings(BaseSettings):
 
   api_version: str
   server_host: str
-  cors_origins: list[AnyHttpUrl | str] = ['*']  # Allow all origins by default
-
-  @field_validator('cors_origins', mode='before')
-  @classmethod
-  def assemble_cors_origins(cls, value: list[AnyHttpUrl | str]) -> list[AnyHttpUrl]:
-    '''Ensure CORS origins are valid URLs.'''
-    return [AnyHttpUrl(url=origin) for origin in value if isinstance(origin, str)]
+  cors_origins: list[AnyHttpUrl]
 
 
 class Settings(BaseSettings):
   '''Settings for the application.'''
 
-  postgres: PostgresSettings
-  project: ProjectSettings
-  domain: DomainSettings
+  domain: DomainSettings = Field()
+  postgres: PostgresSettings = Field()
+  project: ProjectSettings = Field()
 
   model_config = SettingsConfigDict(
     env_file='.env',
