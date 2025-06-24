@@ -8,7 +8,8 @@ from app.core.settings import Settings
 
 __all__ = ('app',)
 
-settings = Settings()  # type: ignore[call-arg]
+
+settings = Settings()  # type: ignore
 container = ApplicationContainer()
 container.config.from_dict(settings.model_dump())
 
