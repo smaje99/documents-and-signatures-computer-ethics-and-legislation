@@ -4,7 +4,7 @@ from starlette.status import HTTP_409_CONFLICT
 from app.context.users.application import UserCreator
 from app.context.users.domain import UserSaveDto
 from app.context.users.domain.user_errors import UserAlreadyExistsError
-from app.context.users.infrastructure.http.api_v1.controllers import (
+from app.context.users.infrastructure.http.api_v1.controllers.user_dto import (
   UserCreatePostResponse,
 )
 
