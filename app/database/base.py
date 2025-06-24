@@ -16,5 +16,13 @@ class Base(AsyncAttrs, MappedAsDataclass, DeclarativeBase, init=False):
 
   @declared_attr.directive
   def __tablename__(cls) -> str:
-    '''Generate __tablename__ automatically.'''
-    return cls.__name__.removeprefix('Orm').removesuffix('Entity').lower()
+    '''Generate __tablename__ automatically in plural form.'''
+    name = cls.__name__.removeprefix('Orm').removesuffix('Entity').lower()
+
+    # Simple pluralization: add 'es' if ends with 's', 'x', 'z', 'ch', 'sh', else add 's'
+    if name.endswith(('s', 'x', 'z', 'ch', 'sh')):
+        return name + 'es'
+    elif name.endswith('y') and name[-2] not in 'aeiou':
+        return name[:-1] + 'ies'
+    else:
+        return name + 's'
